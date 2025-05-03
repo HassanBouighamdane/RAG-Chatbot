@@ -1,16 +1,14 @@
-# This is a sample Python script.
+from langchain_intro.chatbot import chat_model
+from langchain.schema.messages import SystemMessage, HumanMessage
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+messages = [
+     SystemMessage(
+         content="""You're an assistant knowledgeable about healthcare. Only answer healthcare-related questions. """
+     ),
+    HumanMessage(content="What is blood pressure ?"),
+]
+for chunk in chat_model.stream(messages):
+    print(chunk.text(), end="")
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+#response=chat_model.invoke("can you explain the rust programming language in few words.")
+#print(response.content)
